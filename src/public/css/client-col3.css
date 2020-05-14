@@ -1,0 +1,25 @@
+
+.col3 .row1{
+  background: linear-gradient(to bottom right, #222b45 0%, #000066 100%);
+  border-radius: 10px;
+  margin: 0px 0px 0px 0px;
+}
+.col3 .row1 .temperaturechart{
+  width: 100%;
+  height: 290px;
+}
+.col3 .row2 {
+  background: linear-gradient(to bottom right, #222b45 0%, #000066 100%);
+  border-radius: 10px;
+  margin: 10px 0px 0px 0px;
+}
+.col3 .row2 .gauconsentration .GaugeMeter {
+  margin-left: 20px;
+}
+.col3 .row2 .gauconsentration{
+  width: 100%;
+}
+.col3 .row2 .consentrationchart {
+  width: 100%;
+  height: 240px;
+}

@@ -1,0 +1,51 @@
+<head>
+  <meta charset="utf-8">
+  <title>client</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="socket.io/socket.io.js"></script>
+
+  
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 col1">
+                <!--information-->
+                <div class="row row1">
+                    <div class="information">
+                        <div class="user">
+                            <a href="#">USER</a>
+                        </div>
+                        <div class="alert">
+                            <a href="#">
+                                Thongbao <span class="badge badge-light">4</span>
+                            </a>
+                        </div>
+                        <div class="logout">
+                            <a href=/logout>
+                                <i class="fa fa-sign-out"></i>
+                                &nbsp;logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--searchmachine-->
+                <div class="row row2">
+                    <div class="dropdownShow">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Machine
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Machine 1</a>
+                            <a class="dropdown-item" href="#">Machine 2</a>
+                            <a class="dropdown-item" href="#">Machine 3</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>

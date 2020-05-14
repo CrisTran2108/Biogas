@@ -1,0 +1,321 @@
+<head>
+    <meta charset="utf-8">
+    <title>client</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="refer/amcharts_4.9.6/amcharts4/core.js"></script>
+    <script src="refer/amcharts_4.9.6/amcharts4/charts.js"></script>
+    <script src="refer/amcharts_4.9.6/amcharts4/plugins/timeline.js"></script>
+    <script src="refer/amcharts_4.9.6/amcharts4/plugins/bullets.js"></script>
+    <script src="refer/amcharts_4.9.6/amcharts4/maps.js"></script>
+    <script src="refer/amcharts_geodata_4.1.12/geodata/vietnamLow.js"></script>
+    <script src="refer/amcharts_4.9.6/amcharts4/themes/dark.js"></script>
+    <script src="refer/amcharts_4.9.6/amcharts4/themes/animated.js"></script>
+    <script src="refer/Customizable-Animated-jQuery-HTML5-Gauge-Meter-Plugin/Customizable-Animated-jQuery-HTML5-Gauge-Meter-Plugin/GaugeMeter.js"></script> 
+    <script src="socket.io/socket.io.js"></script>
+
+    <script src="js/mainConfig.js"></script>
+    <script src="js/gauge.js"></script>
+    <script src="js/gauge1.js"></script>
+    <script src="js/temperature.js"></script>
+    <script src="js/pressure.js"></script>
+    <script src="js/i.js"></script>
+    <script src="js/u.js"></script>
+    <script src="js/consentrationChart.js"></script>
+    <script src="js/timerun.js"></script>
+    <script src="js/power.js"></script>
+
+    <link href="css/client-col1.css" rel="stylesheet">
+    <link href="css/client-col2.css" rel="stylesheet">
+    <link href="css/client-col3.css" rel="stylesheet">
+    <link href="css/gauge.css" rel="stylesheet">
+</head>
+<body>
+    <!--body-->
+    <div class="container-fluid">
+        <!--row-->
+        <div class="row">
+            <!--infor and search date time -->
+            <div class="col-2 col1">
+                <!--information-->
+                <div class="row row1">
+                    <div class="information">
+                        <div class="user">
+                            <a href="#">USER</a>
+                        </div>
+                        <div class="alert">
+                            <a href="#">
+                                Thongbao <span class="badge badge-light">4</span>
+                            </a>
+                        </div>
+                        <div class="logout">
+                            <a href=/logout>
+                                <i class="fa fa-sign-out"></i>
+                                &nbsp;logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--searchmachine-->
+                <div class="row row2">
+                    <div class="dropdownShow">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          Machine
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="#">Machine 1</a>
+                            <a class="dropdown-item" href="#">Machine 2</a>
+                            <a class="dropdown-item" href="#">Machine 3</a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-5 col2">
+                <!--Electrical and operator-->
+                <div class="row row1">
+                    <div class="electrical">
+                        <div class="GaugeMeter" id="gaugevab"
+                        data-percent=0
+                        data-total=480
+                        data-used=0
+                        data-text=null
+                        data-text_size=0.2
+                        data-prepend=null
+                        data-append=null
+                        data-size=120
+                        data-width=13
+                        data-style=Arch
+                        data-color=#ff8c1a
+                        data-animate_gauge_colors=false
+                        data-animate_text_colors=false
+                        data-label=V
+                        data-label_color=#ff8c1a
+                        data-stripe=null
+                        data-fill=null
+                        data-showvalue=true
+                        data-back= white
+                            ><p>Vab</p>
+                        </div>
+                        <div class="GaugeMeter1" id="gaugeia"
+                        data-percent=              0
+                        data-total=                100
+                        data-used=                 0
+                        data-text=                 null
+                        data-text_size=            0.2
+                        data-prepend=              null
+                        data-append=               null
+                        data-size=                 130
+                        data-width=                13
+                        data-style=                Arch
+                        data-color=                #ff0000
+                        data-animate_gauge_colors= false
+                        data-animate_text_colors=  false
+                        data-label=                A
+                        data-label_color=          #ff0000
+                        data-stripe=               null
+                        data-fill=                 null
+                        data-showvalue=            true
+                        data-back = white
+                            ><p>Ia</p>
+                        </div>
+                        <div class="GaugeMeter1" id="gaugeib"
+                        data-percent=              0
+                        data-total=                100
+                        data-used=                 0
+                        data-text=                 null
+                        data-text_size=            0.2
+                        data-prepend=              null
+                        data-append=               null
+                        data-size=                 130
+                        data-width=                13
+                        data-style=                Arch
+                        data-color=                #ff0000
+                        data-animate_gauge_colors= false
+                        data-animate_text_colors=  false
+                        data-label=                A
+                        data-label_color=          #ff0000
+                        data-stripe=               null
+                        data-fill=                 null
+                        data-showvalue=            true
+                        data-back = white
+                            ><p>Ib</p>
+                        </div>
+                        <div class="GaugeMeter1" id="gaugeic"
+                        data-percent=              0
+                        data-total=                100
+                        data-used=                 0
+                        data-text=                 null
+                        data-text_size=            0.2
+                        data-prepend=              null
+                        data-append=               null
+                        data-size=                 130
+                        data-width=                13
+                        data-style=                Arch
+                        data-color=                #ff0000
+                        data-animate_gauge_colors= false
+                        data-animate_text_colors=  false
+                        data-label=                A
+                        data-label_color=          #ff0000
+                        data-stripe=               null
+                        data-fill=                 null
+                        data-showvalue=            true
+                        data-back = white
+                            ><p>Ic</p>
+                        </div>
+                    </div>
+                    <div class="electricalchart">
+                        <div id="I"></div>
+                    </div>
+                </div>
+                <!-- -->
+                <div class="row row2">
+                    <div class="col col1">
+                        <div class="timerunchart">
+                            <div id="timerunchart"></div>
+                        </div>
+                    </div>
+                    <div class="col col2">
+                        <div class="powerchart">
+                            <div id="powerchart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5 col3">
+                <div class="row row1">
+                    <div class="col-9 col1">
+                        <!--temperature chart-->
+                        <div class="temperaturechart">
+                            <div id="temperaturechart"></div>
+                        </div>
+                    </div>
+                    <div class="col-3 col2">
+                        <div class="GaugeMeter2" id="gaugetw"
+                        data-percent=0
+                        data-total=100
+                        data-used=0
+                        data-text=null
+                        data-text_size=0.2
+                        data-prepend=null
+                        data-append=null
+                        data-size=100
+                        data-width=13
+                        data-style=null
+                        data-color=#ff8c1a
+                        data-animate_gauge_colors=false
+                        data-animate_text_colors=false
+                        data-label=C
+                        data-label_color=#ff8c1a
+                        data-stripe=null
+                        data-fill=null
+                        data-showvalue=true
+                        data-back= white
+                        ><p>water</p>
+                        </div>
+                        <div class="GaugeMeter2" id="gaugeto"
+                        data-percent=0
+                        data-total=100
+                        data-used=0
+                        data-text=null
+                        data-text_size=0.2
+                        data-prepend=null
+                        data-append=null
+                        data-size=100
+                        data-width=13
+                        data-style=null
+                        data-color=#ff8c1a
+                        data-animate_gauge_colors=false
+                        data-animate_text_colors=false
+                        data-label=C
+                        data-label_color=#ff8c1a
+                        data-stripe=null
+                        data-fill=null
+                        data-showvalue=true
+                        data-back= white
+                        ><p>Oil</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row2">
+                    <!--gauconsentration-->
+                    <div class="gauconsentration">
+                        <h4 style="color: white; text-align: center;">Consentration</h4>
+                        <div class="GaugeMeter3" id="gaugeo2"
+                            data-percent=0
+                            data-total=100
+                            data-used=0
+                            data-text=null
+                            data-text_size=0.2
+                            data-prepend=null
+                            data-append=null
+                            data-size=100
+                            data-width=13
+                            data-style=null
+                            data-color=#ff8c1a
+                            data-animate_gauge_colors=false
+                            data-animate_text_colors=false
+                            data-label=ppm
+                            data-label_color=#ff8c1a
+                            data-stripe=null
+                            data-fill=null
+                            data-showvalue=true
+                            data-back= white
+                            ><p>O2</p>
+                        </div>
+                        <div class="GaugeMeter3" id="gaugeh2s"
+                            data-percent=0
+                            data-total=100
+                            data-used=0
+                            data-text=null
+                            data-text_size=0.2
+                            data-prepend=null
+                            data-append=null
+                            data-size=100
+                            data-width=13
+                            data-style=null
+                            data-color=#ff8c1a
+                            data-animate_gauge_colors=false
+                            data-animate_text_colors=false
+                            data-label=ppm
+                            data-label_color=#ff8c1a
+                            data-stripe=null
+                            data-fill=null
+                            data-showvalue=true
+                            data-back= white
+                            ><p>H2S</p>
+                        </div>
+                        <div class="GaugeMeter3" id="gaugech4"
+                            data-percent=0
+                            data-total=100
+                            data-used=0
+                            data-text=null
+                            data-text_size=0.2
+                            data-prepend=null
+                            data-append=null
+                            data-size=100
+                            data-width=13
+                            data-style=null
+                            data-color=#ff8c1a
+                            data-animate_gauge_colors=false
+                            data-animate_text_colors=false
+                            data-label=ppm
+                            data-label_color=#ff8c1a
+                            data-stripe=null
+                            data-fill=null
+                            data-showvalue=true
+                            data-back= white
+                            ><p>CH4</p>
+                        </div>
+                    </div>
+                    <!--consentrationchart-->
+                    <div class="consentrationchart">
+                        <div id="consentrationchart"></div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</body>
