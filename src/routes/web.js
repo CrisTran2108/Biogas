@@ -1,5 +1,5 @@
 import express from "express";
-import {home, auth} from "./../controllers/index";
+import {home, auth, admin} from "./../controllers/index";
 import {authValid} from "./../validation/index";
 import passport from "passport";
 import initPassportLocal from "./../controllers/passportController/local";
@@ -19,6 +19,7 @@ let initRoutes = (app) => {
   router.get("/login-register", auth.checkLoggedOut, auth.getLoginRegister);
   router.post("/register", auth.checkLoggedOut, authValid.register, auth.postRegister);
   router.get("/verify/:token", auth.checkLoggedOut, auth.verifyAccount);
+  router.get("/admin", admin.getAdmin)
 
   router.post("/login", passport.authenticate("local", {
     successRedirect: "/",

@@ -1,0 +1,33 @@
+.col2 .row1 .totalgenerator {
+  background: linear-gradient(to bottom right, #222b45 0%, 	#000000 100%);
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+}
+.col2 .row2 .col {
+  background-color: #222b45;
+  margin: 10px 5px 0px 5px;
+  border-radius: 10px;
+  text-align: center;
+}
+.col2 .row3 {
+  background-color: #222b45;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+.col2 .row3 .totaltimeactive {
+  width: 100%;
+  text-align: center;
+}
+.col2 .row3 .timepermachine {
+  width: 100%;
+  text-align: center;
+}
+#bubble {
+  width: 100%;
+  height: 720px
+}
+#rushhour {
+  width: 100%;
+  height: 720px;
+}
