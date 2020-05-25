@@ -1,8 +1,8 @@
 import kafka from "kafka-node";
 
 let kafkaConnect = (io,ee) => {
-  //let topic = 'messenger';
-  let topic = 'topic';
+  let topic = 'messenger';
+  //let topic = 'topic';
   let client = new kafka.KafkaClient('localhost:9092');
   //let client = new kafka.KafkaClient({kafkaHost: '10.69.93.105:9092'});
   let topicSet = [{ topic: topic }];

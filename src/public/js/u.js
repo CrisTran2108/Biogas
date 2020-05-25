@@ -5,47 +5,80 @@ am4core.ready(function() {
   am4core.useTheme(am4themes_animated);
   // Themes end
 
-  var chart = am4core.create("dienapchart", am4charts.XYChart);
+  var chart = am4core.create("U", am4charts.XYChart);
   
   let angrychartdata = [];
   socket.on('uchart', (data) => {
-    angrychartdata.push(data);
+    if(angrychartdata.length > 20){
+      angrychartdata.shift()
+      angrychartdata.push(data);
+    }else{
+      angrychartdata.push(data);
+    }    
     chart.data = angrychartdata;
-    console.log(chart.data);
+    //console.log(chart.data);
   });
   
-  chart.dateFormatter.inputDateFormat = "HH:mm";
+  chart.dateFormatter.inputDateFormat = "HH:mm:ss";
   var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 100;
-  dateAxis.startLocation = 0.5;
-  dateAxis.endLocation = 0.5;
   dateAxis.baseInterval = {
-    timeUnit: "date",
+    timeUnit: "second",
     count: 1
   }
   
-  var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-  valueAxis.tooltip.disabled = true;
-  valueAxis.renderer.disabled = true;
-  var series = chart.series.push(new am4charts.LineSeries());
-  series.dataFields.dateX = "date";
-  series.name = "U";
-  series.dataFields.valueY = "U";
-  series.tooltipText = "[#000]{valueY.value}[/]";
-  series.tooltip.background.fill = am4core.color("#FFF");
-  series.tooltip.getStrokeFromObject = true;
-  series.tooltip.background.strokeWidth = 3;
-  series.tooltip.getFillFromObject = false;
-  series.fillOpacity = 0.6;
-  series.strokeWidth = 1;
-  series.stacked = true;
+  function createAxisAndSeries(field, name, opposite, bullet) {
+    var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+    if(chart.yAxes.indexOf(valueAxis) != 0){
+      valueAxis.syncWithAxis = chart.yAxes.getIndex(0);
+    }
+    
+    var series = chart.series.push(new am4charts.LineSeries());
+    series.dataFields.valueY = field;
+    series.dataFields.dateX = "date";
+    series.strokeWidth = 2;
+    series.yAxis = valueAxis;
+    series.name = name;
+    series.tooltipText = "{name}: [bold]{valueY}[/]";
+    series.tensionX = 0.8;
+    series.showOnInit = true;
+    
+    var interfaceColors = new am4core.InterfaceColorSet();
+    
+    switch(bullet) {
+      case "triangle":
+        var bullet = series.bullets.push(new am4charts.Bullet());
+        bullet.width = 5;
+        bullet.height = 5;
+        bullet.horizontalCenter = "middle";
+        bullet.verticalCenter = "middle";
+        
+        var triangle = bullet.createChild(am4core.Triangle);
+        triangle.stroke = interfaceColors.getFor("background");
+        triangle.strokeWidth = 2;
+        triangle.direction = "top";
+        triangle.width = 5;
+        triangle.height = 5;
+        break;
+      default:
+        var bullet = series.bullets.push(new am4charts.CircleBullet());
+        bullet.circle.stroke = interfaceColors.getFor("background");
+        bullet.circle.strokeWidth = 2;
+        break;
+    }
+    
+    valueAxis.renderer.line.strokeOpacity = 1;
+    valueAxis.renderer.line.strokeWidth = 2;
+    valueAxis.renderer.line.stroke = series.stroke;
+    valueAxis.renderer.labels.template.fill = series.stroke;
+    valueAxis.renderer.opposite = opposite;
+  }
   
   
-  
-  chart.cursor = new am4charts.XYCursor();
-
-  // Add a legend
+  createAxisAndSeries("V_ab", "V_ab", false, "triangle");
+  // Add legend
   chart.legend = new am4charts.Legend();
-  chart.legend.position = "top";
   
+  // Add cursor
+  chart.cursor = new am4charts.XYCursor();
   }); // end am4core.ready()

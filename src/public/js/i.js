@@ -11,8 +11,12 @@ am4core.ready(function() {
   //listen data from server
   let angrychartdata = [];
   socket.on('ichart', (data) => {
-    
-    angrychartdata.push(data);
+    if(angrychartdata.length > 20){
+      angrychartdata.shift()
+      angrychartdata.push(data);
+    }else{
+      angrychartdata.push(data);
+    }    
     chart.data = angrychartdata;
     //console.log(chart.data);
   });
@@ -23,10 +27,13 @@ am4core.ready(function() {
   
   
   // Create axes
-  chart.dateFormatter.inputDateFormat = "HH:mm";
+  chart.dateFormatter.inputDateFormat = "HH:mm:ss";
   var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 100;
-  
+  dateAxis.baseInterval = {
+    timeUnit: "second",
+    count: 1
+  }
   // Create series
   function createAxisAndSeries(field, name, opposite, bullet) {
     var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());

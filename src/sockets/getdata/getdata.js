@@ -5,8 +5,9 @@
 let getdata = (io,ee) => {
   let clients = {};
   function kafkadata(id,idmay){
-    return function(data){
+    return function(data){   
       data = JSON.parse(data);
+      //console.log(data)
       if (idmay==data.rpi) {
         let dateFormat = require('dateformat');
         let datechart = new Date(Number(data.time))
@@ -14,78 +15,63 @@ let getdata = (io,ee) => {
         let tw, po, o2, h2s ;
         let tb, te ;
         data.data.forEach(element => {
-          switch (element.type) {
-            case "phaseA":
-              ia = element.v
-              break;
-            case "phaseB":
-              ib = element.v
-              break;
-            case "phaseC":
-              ic = element.v
-              break;
-            case "dayAB":
-              vab = element.v
-              break;
-            //case "g01eles":
-            //  s = element.v
-            //  break;
-            //case "g01elef":
-            //  f = element.v
-            //  break;
-            case "temW":
-              tw = element.v
-              break;
-            case "g01envpo":
-              po = element.v
-              break;
-            case "conseno2":
-              o2 = element.v
-              break;
-            case "consenh2s":
-              h2s = element.v
-              break;
-            case "timeB":
-              tb = element.v
-              break;
-            case "timeE":
-              te = element.v
-              break;
-            default:
-              console.log("data not definded");
-              break;
-          };
           
+          if(element.id.includes("eleia")){
+            ia = element.v
+          }else if(element.id.includes("eleib")) {
+            ib = element.v
+          }else if(element.id.includes("eleic")) {
+            ic = element.v
+          }else if(element.id.includes("elevab")) {
+            vab = element.v
+          }else if(element.id.includes("eles")) {
+            s = element.v
+          }else if(element.id.includes("elef")) {
+            f = element.v
+          }else if(element.id.includes("envtw")) {
+            tw = element.v
+          }else if(element.id.includes("envpo")) {
+            po = element.v
+          }else if(element.id.includes("envo2")) {
+            o2 = element.v
+          }else if(element.id.includes("envh2s")) {
+            h2s = element.v
+          }
         });
         let uchartdata = {
-          "date": dateFormat(datechart, "HH:MM"),
+          "date": dateFormat(datechart, "HH:MM:ss"),
           "V_ab":vab,
         };
         let ichartdata = {
-          "date": dateFormat(datechart, "HH:MM"),
+          "date": dateFormat(datechart, "HH:MM:ss"),
           "I_ab":ia,
           "I_bc":ib,
           "I_ca":ic,
         };
         let temperaturedata = {
-          "date": dateFormat(datechart, "HH:MM"),
-          "twater":tw,
-          "toil":"",
+          "date": dateFormat(datechart, "HH:MM:ss"),
+          "Water":tw,
+          "Oil":"",
         };
         let timedata = {
           "timestart": tb,
           "timestop": te
         };
         let consentrationdata = {
-          "date": dateFormat(datechart, "HH:MM"),
-          "C_o2":o2,
-          "C_h2s":h2s,
-          "C_ch4":"",
+          "date": dateFormat(datechart, "HH:MM:ss"),
+          "O2":o2,
+          "H2S":h2s,
+          "CH4":0,
         };
-        io.to(id).emit('consentrationchart', consentrationdata);
-        io.to(id).emit('temperchart', temperaturedata);
-        io.to(id).emit('ichart', ichartdata);
-        io.to(id).emit('uchart', uchartdata);
+        if(data.type=='electrical'){
+          io.to(id).emit('ichart', ichartdata);
+          io.to(id).emit('uchart', uchartdata);
+        }else if(data.type=='environmental'){
+          io.to(id).emit('consentrationchart', consentrationdata);
+          io.to(id).emit('temperchart', temperaturedata);
+        }else{
+
+        }
       } else {
         //
       }
@@ -95,7 +81,7 @@ let getdata = (io,ee) => {
   //let chartdata = {};
   
   io.on("connection", (socket) => {
-    //console.log("connect web");
+    console.log("connect web");
     
     let currentUserId = socket.request.user._doc.idmachine;
     let fuctionlistenler = kafkadata(socket.id,currentUserId)

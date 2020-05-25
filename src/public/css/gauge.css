@@ -1,21 +1,24 @@
-.GaugeMeter, .GaugeMeter1, .GaugeMeter2 {
-  position: Relative;
-  text-align: Center;
-  overflow: Hidden;
-  cursor: Default;
-  display: inline-block;
+.display{
+  width: 150px;
+  height: 150px;
+  float: left;
+}
+.gauge-container.env > .gauge > .dial {
+  stroke: #334455;
+  stroke-width: 10;
+}
+.gauge-container.env > .gauge > .value {
+  /*stroke: orange;*/
+  stroke-dasharray: none;
+  stroke-width: 13;
 }
 
-.GaugeMeter SPAN, .GaugeMeter1 SPAN, .GaugeMeter2 SPAN, .GaugeMeter B,.GaugeMeter1 B,.GaugeMeter2 B {
-  width: 54%;
-  position: Absolute;
-  text-align: Center;
-  display: Inline-Block;
-  color: #ffffff;
-  font-weight: 100;
-  font-family: "Open Sans", Arial;
-  overflow: Hidden;
-  white-space: NoWrap;
-  text-overflow: Ellipsis;
-  margin: 0 23%;
+.gauge-container.ele > .gauge > .dial {
+  stroke: #334455;
+  stroke-width: 10;
+}
+.gauge-container.gauge-container.ele > .gauge > .value {
+  /*stroke: orange;*/
+  stroke-dasharray: none;
+  stroke-width: 13;
 }
