@@ -25,6 +25,8 @@
     <script src="js/pressure.js"></script>
     <script src="js/i.js"></script>
     <script src="js/u.js"></script>
+    <script src="js/speed.js"></script>
+    <script src="js/frequency.js"></script>
     <script src="js/consentrationChart.js"></script>
     <script src="js/timerun.js"></script>
     <script src="js/power.js"></script>
@@ -77,52 +79,69 @@
                     <div style="width: 100%;"><h4 style="color: white; text-align: center;">Electrical</h4></div>
                     <div class="electrical">
                         <div class="display">
+                            <p>V_ab</p>
                             <div id="gaugevab" class="gauge-container ele"></div>
+                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">V</div>
                         </div> 
                         <div class="display">
+                            <p>I_a</p>
                             <div id="gaugeia" class="gauge-container ele"></div>
+                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">A</div>
+
                         </div> 
                         <div class="display">
+                            <p>I_b</p>
                             <div id="gaugeib" class="gauge-container ele"></div>
+                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">A</div>
+
                         </div> 
                         <div class="display">
+                            <p>I_c</p>
                             <div id="gaugeic" class="gauge-container ele"></div>
+                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">A</div>
+
                         </div> 
                     </div>
                     <div class="electricalchart">
+                        <p>I_Chart</p>
                         <div id="I"></div>
                     </div>
                     <div class="electricalchart">
+                        <p>U_Chart</p>
                         <div id="U"></div>
                     </div>
                 </div>
-                <!-- -->
+                <!--speed and frequency-->
                 <div class="row row2">
                     <div class="col col1">
-                        <div class="timerunchart">
-                            <div id="timerunchart"></div>
+                        <div class="speedchart">
+                            <p>Speed_Chart</p>
+                            <div id="speedchart"></div>
                         </div>
                     </div>
                     <div class="col col2">
-                        <div class="powerchart">
-                            <div id="powerchart"></div>
+                        <div class="frequencychart">
+                            <p>Frequency_Chart</p>
+                            <div id="frequencychart"></div>
                         </div>
                     </div>
                 </div>
-                <!---->
-                <div class="row row3"></div>
+                
             </div>
             <div class="col-5 col3">
                 <div class="row row1">
                     <div style="width: 100%"><h4 style="color: white; text-align: center;">Environment</h4></div>
                     <div class="display">
+                        <p>T_water</p>
                         <div id="gaugetw" class="gauge-container env"></div>
                     </div>
                     <div class="display">
+                        <p>T_oil</p>
                         <div id="gaugeto" class="gauge-container env"></div>
                     </div>
                     <!--temperature chart-->
                     <div class="temperaturechart">
+                        <p>Temperature_Chart</p>
                         <div id="temperaturechart"></div>
                     </div>
                     
@@ -133,17 +152,37 @@
                         <h4 style="color: white; text-align: center;">Consentration</h4>
                     </div>
                     <div class="display">
+                        <p>C_O2</p>
                         <div id="gaugeo2" class="gauge-container env"></div>
                     </div> 
                     <div class="display">
+                        <p>C_H2S</p>
                         <div id="gaugeh2s" class="gauge-container env"></div>
                     </div> 
                     <div class="display">
+                        <p>C_CH4</p>
                         <div id="gaugech4" class="gauge-container env"></div>
                     </div> 
                     <!--consentrationchart-->
                     <div class="consentrationchart">
+                        <p>Concentration_Chart</p>
                         <div id="consentrationchart"></div>
+                    </div>
+                </div>
+                
+                <div class="row row3">
+                    <!--time run and power-->
+                    <div class="col col1">
+                        <div class="pressurechart">
+                            <p>Pressure_Chart</p>
+                            <div id="pressurechart"></div>
+                        </div>
+                    </div>
+                    <div class="col col2">
+                        <div class="powerchart">
+                            <p>Power_Chart</p>
+                            <div id="powerchart"></div>
+                        </div>
                     </div>
                 </div>
             </div>

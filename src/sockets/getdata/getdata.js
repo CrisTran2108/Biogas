@@ -63,9 +63,19 @@ let getdata = (io,ee) => {
           "H2S":h2s,
           "CH4":0,
         };
+        let speeddata = {
+          "date": dateFormat(datechart, "HH:MM:ss"),
+          "S":s,
+        };
+        let frequencydata = {
+          "date": dateFormat(datechart, "HH:MM:ss"),
+          "F":f,
+        };
         if(data.type=='electrical'){
           io.to(id).emit('ichart', ichartdata);
           io.to(id).emit('uchart', uchartdata);
+          io.to(id).emit('speedchart', speeddata);
+          io.to(id).emit('frequencychart', frequencydata);
         }else if(data.type=='environmental'){
           io.to(id).emit('consentrationchart', consentrationdata);
           io.to(id).emit('temperchart', temperaturedata);

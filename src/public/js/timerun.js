@@ -5,7 +5,7 @@ am4core.ready(function() {
   am4core.useTheme(am4themes_animated);
   // Themes end
 
-  var chart = am4core.create("timerunchart", am4charts.XYChart);
+  var chart = am4core.create("pressurechart", am4charts.XYChart);
   let angrychartdata = [
     {"pressure":0,"date":"12:10"},
     {"pressure":1,"date":"12:10"},
