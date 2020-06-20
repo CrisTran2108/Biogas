@@ -1,7 +1,16 @@
 let getHome = (req, res) => {
-  return res.render("main/master");
+  return res.render("main/master",{
+    user: req.user,
+    
+  });
 };
-
+let pushid = (req, res, next) => {
+    let id = req.user._id;
+    //console.log(id);
+    next();
+    
+}
 module.exports = {
   getHome: getHome,
+  pushid: pushid,
 };

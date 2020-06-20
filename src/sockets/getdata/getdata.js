@@ -1,3 +1,5 @@
+import electricalModel from "./../../models/electricalModel"
+import environmentalModel from "./../../models/environmentalModel"
 
 /**
  * @param io from socket io lib
@@ -76,9 +78,29 @@ let getdata = (io,ee) => {
           io.to(id).emit('uchart', uchartdata);
           io.to(id).emit('speedchart', speeddata);
           io.to(id).emit('frequencychart', frequencydata);
+          let item = {
+            V_ab: vab,
+            I_ab: ia,
+            I_bc: ib,
+            I_ca: ic,
+            Speed: s,
+            Frequency: f,
+            Time: data.time,
+          }
+          //electricalModel.createNew(item);
+          //electricalModel.querydata();
         }else if(data.type=='environmental'){
           io.to(id).emit('consentrationchart', consentrationdata);
           io.to(id).emit('temperchart', temperaturedata);
+          let item = {
+            T_water: tw,
+            P_oil: po,
+            O2: o2,
+            H2S: h2s,
+            Time: data.time,
+          }
+          //environmentalModel.createNew(item);
+          //environmentalModel.querydata();
         }else{
 
         }

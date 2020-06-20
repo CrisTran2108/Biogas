@@ -56,7 +56,7 @@
                 <div class="row row1">
                     <div class="information">
                         <div class="user">
-                            <a href="#">USER</a>
+                            <a href="#"> <%= user.username %> </a>
                         </div>
                         <div class="alert">
                             <a href="#">
@@ -69,9 +69,19 @@
                                 &nbsp;logout
                             </a>
                         </div>
+                       
                     </div>
                 </div>
-                
+                <div class="row row2">
+                    <div class="inforuser">
+                        <h3 style="color: white; text-align: center;">Infor user</h3>
+                        <p>Email: <%= user.local.email %></p>
+                        <p>ID may: <%= user.idmachine %> </p>
+                        <p>Gender: <%= user.gender %></p>
+                        <p>Phone: <%= user.phone %></p>
+                        <p>Address: <%= user.address %></p>
+                    </div>
+                </div>
             </div>
             <div class="col-5 col2">
                 <!--Electrical and operator-->
@@ -134,10 +144,12 @@
                     <div class="display">
                         <p>T_water</p>
                         <div id="gaugetw" class="gauge-container env"></div>
+                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">&#8451</div>
                     </div>
                     <div class="display">
                         <p>T_oil</p>
                         <div id="gaugeto" class="gauge-container env"></div>
+                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">&#8451</div>
                     </div>
                     <!--temperature chart-->
                     <div class="temperaturechart">
@@ -154,14 +166,17 @@
                     <div class="display">
                         <p>C_O2</p>
                         <div id="gaugeo2" class="gauge-container env"></div>
+                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">lambda</div>
                     </div> 
                     <div class="display">
                         <p>C_H2S</p>
                         <div id="gaugeh2s" class="gauge-container env"></div>
+                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">ppm</div>
                     </div> 
                     <div class="display">
                         <p>C_CH4</p>
                         <div id="gaugech4" class="gauge-container env"></div>
+                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">ppm</div>
                     </div> 
                     <!--consentrationchart-->
                     <div class="consentrationchart">
