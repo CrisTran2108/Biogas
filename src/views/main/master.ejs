@@ -19,189 +19,52 @@
 
 
     <script src="js/mainConfig.js"></script>
-    
-    
-    <script src="js/temperature.js"></script>
-    <script src="js/pressure.js"></script>
-    <script src="js/i.js"></script>
-    <script src="js/u.js"></script>
-    <script src="js/speed.js"></script>
-    <script src="js/frequency.js"></script>
-    <script src="js/consentrationChart.js"></script>
-    <script src="js/timerun.js"></script>
-    <script src="js/power.js"></script>
+    <script src="js/user/temperature.js"></script>
+    <script src="js/user/pressure.js"></script>
+    <script src="js/user/i.js"></script>
+    <script src="js/user/u.js"></script>
+    <script src="js/user/speed.js"></script>
+    <script src="js/user/frequency.js"></script>
+    <script src="js/user/consentrationChart.js"></script>
+    <script src="js/user/timerun.js"></script>
+    <script src="js/user/power.js"></script>
 
-    <link href="css/client-col1.css" rel="stylesheet">
-    <link href="css/client-col2.css" rel="stylesheet">
-    <link href="css/client-col3.css" rel="stylesheet">
-    <link href="css/gauge.css" rel="stylesheet">
+    <link href="css/user/client-col1.css" rel="stylesheet">
+    <link href="css/user/client-col2.css" rel="stylesheet">
+    <link href="css/user/client-col3.css" rel="stylesheet">
+    <link href="css/user/gauge.css" rel="stylesheet">
+    <link href="css/user/dropdown.css" rel="stylesheet">
 </head>
 <body>
     <!--body-->
     <div class="container-fluid">
-        <!--row-->
-        <div class="row rownavbar">
-
-            <div class="container d-flex justify-content-between">              
-                <strong>
-                    <h2>Monitor System</h2>
-                </strong>
-            </div>
-    
-        </div>
+        <!--row navbar-->
+        <%- include("navbar/navbar"); %>
         <div class="row">
-            <!--infor and search date time -->
-            <div class="col-2 col1">
-                <!--information-->
-                <div class="row row1">
-                    <div class="information">
-                        <div class="user">
-                            <a href="#"> <%= user.username %> </a>
-                        </div>
-                        <div class="alert">
-                            <a href="#">
-                                Thongbao <span class="badge badge-light">4</span>
-                            </a>
-                        </div>
-                        <div class="logout">
-                            <a href=/logout>
-                                <i class="fa fa-sign-out"></i>
-                                &nbsp;logout
-                            </a>
-                        </div>
-                       
-                    </div>
+            <!--col1 information and infor user -->
+            <%- include("col1/master"); %>
+            <!--col2 electrical-->
+            <%- include("col2/master"); %>
+            <!--col3 environment-->
+            <%- include("col3/master"); %>
+        </div>    
+    </div>
+    <!--dashboas-->
+    <div class="modal fade" id="user-profile-modal" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="row row2">
-                    <div class="inforuser">
-                        <h3 style="color: white; text-align: center;">Infor user</h3>
-                        <p>Email: <%= user.local.email %></p>
-                        <p>ID may: <%= user.idmachine %> </p>
-                        <p>Gender: <%= user.gender %></p>
-                        <p>Phone: <%= user.phone %></p>
-                        <p>Address: <%= user.address %></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-5 col2">
-                <!--Electrical and operator-->
-                <div class="row row1">
-                    <div style="width: 100%;"><h4 style="color: white; text-align: center;">Electrical</h4></div>
-                    <div class="electrical">
-                        <div class="display">
-                            <p>V_ab</p>
-                            <div id="gaugevab" class="gauge-container ele"></div>
-                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">V</div>
-                        </div> 
-                        <div class="display">
-                            <p>I_a</p>
-                            <div id="gaugeia" class="gauge-container ele"></div>
-                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">A</div>
-
-                        </div> 
-                        <div class="display">
-                            <p>I_b</p>
-                            <div id="gaugeib" class="gauge-container ele"></div>
-                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">A</div>
-
-                        </div> 
-                        <div class="display">
-                            <p>I_c</p>
-                            <div id="gaugeic" class="gauge-container ele"></div>
-                            <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">A</div>
-
-                        </div> 
-                    </div>
+                <div class="modal-body">
+                    <h1>hello dashboad</h1>
                     <div class="electricalchart">
                         <p>I_Chart</p>
                         <div id="I"></div>
                     </div>
-                    <div class="electricalchart">
-                        <p>U_Chart</p>
-                        <div id="U"></div>
-                    </div>
-                </div>
-                <!--speed and frequency-->
-                <div class="row row2">
-                    <div class="col col1">
-                        <div class="speedchart">
-                            <p>Speed_Chart</p>
-                            <div id="speedchart"></div>
-                        </div>
-                    </div>
-                    <div class="col col2">
-                        <div class="frequencychart">
-                            <p>Frequency_Chart</p>
-                            <div id="frequencychart"></div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-5 col3">
-                <div class="row row1">
-                    <div style="width: 100%"><h4 style="color: white; text-align: center;">Environment</h4></div>
-                    <div class="display">
-                        <p>T_water</p>
-                        <div id="gaugetw" class="gauge-container env"></div>
-                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">&#8451</div>
-                    </div>
-                    <div class="display">
-                        <p>T_oil</p>
-                        <div id="gaugeto" class="gauge-container env"></div>
-                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">&#8451</div>
-                    </div>
-                    <!--temperature chart-->
-                    <div class="temperaturechart">
-                        <p>Temperature_Chart</p>
-                        <div id="temperaturechart"></div>
-                    </div>
-                    
-                </div>
-                <div class="row row2">
-                    <!--gauconsentration-->
-                    <div class="gauconsentration">
-                        <h4 style="color: white; text-align: center;">Consentration</h4>
-                    </div>
-                    <div class="display">
-                        <p>C_O2</p>
-                        <div id="gaugeo2" class="gauge-container env"></div>
-                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">lambda</div>
-                    </div> 
-                    <div class="display">
-                        <p>C_H2S</p>
-                        <div id="gaugeh2s" class="gauge-container env"></div>
-                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">ppm</div>
-                    </div> 
-                    <div class="display">
-                        <p>C_CH4</p>
-                        <div id="gaugech4" class="gauge-container env"></div>
-                        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">ppm</div>
-                    </div> 
-                    <!--consentrationchart-->
-                    <div class="consentrationchart">
-                        <p>Concentration_Chart</p>
-                        <div id="consentrationchart"></div>
-                    </div>
-                </div>
-                
-                <div class="row row3">
-                    <!--time run and power-->
-                    <div class="col col1">
-                        <div class="pressurechart">
-                            <p>Pressure_Chart</p>
-                            <div id="pressurechart"></div>
-                        </div>
-                    </div>
-                    <div class="col col2">
-                        <div class="powerchart">
-                            <p>Power_Chart</p>
-                            <div id="powerchart"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
-    <script src="js/gauge.js"></script>
+    <script src="js/user/gauge.js"></script>
 </body>

@@ -2,8 +2,12 @@
 .col2 .row1 {
   background: linear-gradient(to bottom right, #222b45 0%, #000066 100%);
   border-radius: 10px;
+  height: 1190px;
 }
-
+.col2 .electrical {
+  width: 100%;
+  margin-top: -100px;
+}
 .col2 .GaugeMeter{
   margin-left: 20px;
 }
@@ -13,7 +17,8 @@
 }
 .col2 .electricalchart{
   width: 100%;
-  height: 320px;
+  height: 400px;
+  margin-top: -50px;
 }
 p {
   color: white;
@@ -21,16 +26,19 @@ p {
 }
 .col2 .row2 .col1 .speedchart {
   width: 100%;
-  height: 350px;
+  height: 320px;
+  margin-top: 5px;
 }
 .col2 .row2 .col2 .frequencychart {
   width: 100%;
-  height: 350px;
+  height: 320;
+  margin-top: 5px;
 }
 .col2 .row2{
   background: linear-gradient(to bottom right, #222b45 0%, #000066 100%);
   border-radius: 10px;
   margin-top: 10px;
+  height: 400px;
 }
 .col2 p {
   text-align: center;

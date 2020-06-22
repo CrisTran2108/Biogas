@@ -1,6 +1,9 @@
 body{ 
     background-color: #151a30;
 }
+#user-profile-modal input:hover, #user-profile-modal input:focus {
+    border-color: #576574
+}
 .col1 .information{
     color: white;
     background-color: #222b45;

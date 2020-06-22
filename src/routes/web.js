@@ -1,5 +1,5 @@
 import express from "express";
-import {home, auth, admin, dashboad} from "./../controllers/index";
+import {home, auth, admin} from "./../controllers/index";
 import {authValid} from "./../validation/index";
 import passport from "passport";
 import initPassportLocal from "./../controllers/passportController/local";
@@ -16,9 +16,7 @@ let router = express.Router();
  */
 let initRoutes = (app) => {
 
-  router.get("/", auth.checkLoggedIn, home.pushid, home.getHome);
-  
-
+  router.get("/", auth.checkLoggedIn, home.getHome);
   router.get("/login-register", auth.checkLoggedOut, auth.getLoginRegister);
   router.post("/register", auth.checkLoggedOut, authValid.register, auth.postRegister);
   router.get("/verify/:token", auth.checkLoggedOut, auth.verifyAccount);

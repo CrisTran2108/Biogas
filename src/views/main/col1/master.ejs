@@ -1,0 +1,32 @@
+<div class="col-2 col1">
+    <!--information-->
+    <div class="row row1">
+        <div class="information">
+            <div class="user">
+                <a href="#"> <%= user.username %> </a>
+            </div>
+            <div class="alert">
+                <a href="#">
+                    Thongbao <span class="badge badge-light">4</span>
+                </a>
+            </div>
+            <div class="logout">
+                <a href=/logout>
+                    <i class="fa fa-sign-out"></i>
+                    &nbsp;logout
+                </a>
+            </div>
+           
+        </div>
+    </div>
+    <div class="row row2">
+        <div class="inforuser">
+            <h3 style="color: white; text-align: center;">Infor user</h3>
+            <p>Email: <%= user.local.email %></p>
+            <p>ID may: <%= user.idmachine %> </p>
+            <p>Gender: <%= user.gender %></p>
+            <p>Phone: <%= user.phone %></p>
+            <p>Address: <%= user.address %></p>
+        </div>
+    </div>
+</div>
