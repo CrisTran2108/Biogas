@@ -8,19 +8,18 @@ am4core.ready(function() {
   var chart = am4core.create("consentrationchart", am4charts.XYChart);
   
   let angrychartdata = [];
+  chart.data = angrychartdata;
   socket.on('consentrationchart', (data) => {
-    if(angrychartdata.length > 20){
-      angrychartdata.shift()
-      angrychartdata.push(data);
+    if(chart.data.length > 20){
+      chart.addData(
+        { date: data.date, O2: data.O2, H2S: data.H2S, CH4: data.CH4 },1);
     }else{
-      angrychartdata.push(data);
-    }    
-    chart.data = angrychartdata;
-    //console.log(chart.data);
+      chart.addData(
+        { date: data.date, O2: data.O2, H2S: data.H2S, CH4: data.CH4 },0);
+    }
   });
   
-  
-  chart.dateFormatter.inputDateFormat = "HH:mm:ss";
+  chart.dateFormatter.inputDateFormat = "yyyy-mm-dd HH:mm:ss";
   var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 100;
   dateAxis.startLocation = 0.5;

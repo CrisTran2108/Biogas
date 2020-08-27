@@ -1,5 +1,5 @@
 let getAdmin = (req, res) => {
-  return res.render("admin/admin");
+  return res.render("admin/admin2");
 };
 
 module.exports = {

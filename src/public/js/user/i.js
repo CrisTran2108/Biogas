@@ -10,24 +10,25 @@ am4core.ready(function() {
   
   //listen data from server
   let angrychartdata = [];
+  
+  chart.data = angrychartdata;
   socket.on('ichart', (data) => {
-    if(angrychartdata.length > 20){
-      angrychartdata.shift()
-      angrychartdata.push(data);
+    angrychartdata.push(data);
+    if(chart.data.length > 20){
+      chart.addData(
+        { date: data.date, I_bc: data.I_bc, I_ab: data.I_ab, I_ca: data.I_ca },1);
     }else{
-      angrychartdata.push(data);
-    }    
-    chart.data = angrychartdata;
-    //console.log(chart.data);
+      chart.addData(
+        { date: data.date, I_bc: data.I_bc, I_ab: data.I_ab, I_ca: data.I_ca },0);
+    }
   });
   // Increase contrast by taking evey second color
   chart.colors.step = 2;
   
   // Add data
   
-  
   // Create axes
-  chart.dateFormatter.inputDateFormat = "HH:mm:ss";
+  chart.dateFormatter.inputDateFormat = "yyyy-mm-dd HH:mm:ss";
   var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 100;
   dateAxis.baseInterval = {
@@ -95,7 +96,12 @@ am4core.ready(function() {
     valueAxis.renderer.opposite = opposite;
   }
   
-  
+  chart.events.on("beforedatavalidated", function(ev) {
+    chart.data.sort(function(a, b) {
+      return (new Date(a.date)) - (new Date(b.date));
+    });
+  });
+
   createAxisAndSeries("I_bc", "I_bc", false, "triangle");
   createAxisAndSeries("I_ab", "I_ab", true, "rectangle");
   createAxisAndSeries("I_ca", "I_ca", true, "rectangle");

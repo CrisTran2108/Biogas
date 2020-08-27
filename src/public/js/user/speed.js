@@ -8,18 +8,18 @@ am4core.ready(function() {
     var chart = am4core.create("speedchart", am4charts.XYChart);
     
     let angrychartdata = [];
+    chart.data = angrychartdata;
     socket.on('speedchart', (data) => {
       if(angrychartdata.length > 20){
-        angrychartdata.shift()
-        angrychartdata.push(data);
+        chart.addData(
+          { date: data.date, S: data.S},1);
       }else{
-        angrychartdata.push(data);
-      }    
-      chart.data = angrychartdata;
-      //console.log(chart.data);
+        chart.addData(
+          { date: data.date, S: data.S },0);
+      }
     });
-    
-    chart.dateFormatter.inputDateFormat = "HH:mm:ss";
+
+    chart.dateFormatter.inputDateFormat = "yyyy-mm-dd HH:mm:ss";
     var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
     dateAxis.renderer.minGridDistance = 100;
     dateAxis.baseInterval = {
@@ -74,7 +74,12 @@ am4core.ready(function() {
       valueAxis.renderer.opposite = opposite;
     }
     
-    
+    chart.events.on("beforedatavalidated", function(ev) {
+      chart.data.sort(function(a, b) {
+        return (new Date(a.date)) - (new Date(b.date));
+      });
+    });
+
     createAxisAndSeries("S", "S", false, "triangle");
     // Add legend
     chart.legend = new am4charts.Legend();

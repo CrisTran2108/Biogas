@@ -8,18 +8,18 @@ am4core.ready(function() {
   var chart = am4core.create("U", am4charts.XYChart);
   
   let angrychartdata = [];
+  chart.data = angrychartdata;
   socket.on('uchart', (data) => {
-    if(angrychartdata.length > 20){
-      angrychartdata.shift()
-      angrychartdata.push(data);
+    if(chart.data.length > 20){
+      chart.addData(
+        { date: data.date, V_ab: data.V_ab },1);
     }else{
-      angrychartdata.push(data);
-    }    
-    chart.data = angrychartdata;
-    //console.log(chart.data);
+      chart.addData(
+        { date: data.date, V_ab: data.V_ab },0);
+    }
   });
   
-  chart.dateFormatter.inputDateFormat = "HH:mm:ss";
+  chart.dateFormatter.inputDateFormat = "yyyy-mm-dd HH:mm:ss";
   var dateAxis = chart.xAxes.push(new am4charts.DateAxis());
   dateAxis.renderer.minGridDistance = 100;
   dateAxis.baseInterval = {
@@ -74,6 +74,11 @@ am4core.ready(function() {
     valueAxis.renderer.opposite = opposite;
   }
   
+  chart.events.on("beforedatavalidated", function(ev) {
+    chart.data.sort(function(a, b) {
+      return (new Date(a.date)) - (new Date(b.date));
+    });
+  });
   
   createAxisAndSeries("V_ab", "V_ab", false, "triangle");
   // Add legend

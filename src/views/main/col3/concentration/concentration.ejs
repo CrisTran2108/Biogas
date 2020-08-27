@@ -1,38 +1,34 @@
- <!--gauconcentration-->
- <div class="gauconsentration">
-    <h4 style="color: white; text-align: center;">Consentration</h4>
-    <div class="display">
-        <p>C_O2</p>
+<!--gauconcentration-->
+<div class="row row1 gauconsentration">
+    <div class="display col-md-3 offset-md-1">
+        <p class="d-flex justify-content-center">C_O2</p>
         <div id="gaugeo2" class="gauge-container env"></div>
-        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">lambda</div>
-    </div> 
-    <div class="display">
-        <p>C_H2S</p>
+        <div class="value-text" style="text-align: center; margin-top: -50px;">lambda</div>
+    </div>
+    <div class="display col-md-3">
+        <p class="d-flex justify-content-center">C_H2S</p>
         <div id="gaugeh2s" class="gauge-container env"></div>
-        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">ppm</div>
-    </div> 
-    <div class="display">
-        <p>C_CH4</p>
+        <div class="value-text" style="text-align: center; margin-top: -50px;">ppm</div>
+    </div>
+    <div class="display col-md-3">
+        <p class="d-flex justify-content-center">C_CH4</p>
         <div id="gaugech4" class="gauge-container env"></div>
-        <div class="value-text" style="color: white; text-align: center; margin-top: -50px;">ppm</div>
-    </div> 
+        <div class="value-text" style="text-align: center; margin-top: -50px;">ppm</div>
+    </div>
 </div>
 <!--concentrationchart-->
 <div class="consentrationchart">
-    <p>Concentration_Chart</p>
+    <p class="d-flex justify-content-center">Concentration_Chart</p>
     <div class="dropdown">
-        <button class="dropbtn">Search Data over time</button>
-        <div class="dropdown-content">
-            <a href="#user-profile-modal" data-toggle="modal">
-                &nbsp;日
-            </a>
-            <a href="#user-profile-modal" data-toggle="modal">
-                &nbsp;月
-            </a>
-            <a href="#user-profile-modal" data-toggle="modal">
-                &nbsp;年
-            </a>
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Search Data over time </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#Udashboad">Day</a>
+            <a class="dropdown-item" href="#Udashboad">Month</a>
+            <a class="dropdown-item" href="#Udashboad">Year</a>
         </div>
     </div>
-    <div id="consentrationchart"></div>
+    <div id="consentrationchart" style="width: auto; height: 300px;"></div>
 </div>

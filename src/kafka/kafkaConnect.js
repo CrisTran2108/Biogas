@@ -1,7 +1,7 @@
 import kafka from "kafka-node";
 
 let kafkaConnect = (io,ee) => {
-  let topic = 'messenger';
+  let topic = 'messengerProduct';
   //let topic = 'topic';
   let client = new kafka.KafkaClient('localhost:9092');
   // let client = new kafka.KafkaClient({kafkaHost: '10.69.93.185:9092'});
@@ -9,7 +9,7 @@ let kafkaConnect = (io,ee) => {
   let consumer = new kafka.Consumer(client, topicSet);
 
   consumer = consumer.on('message', (data)=>{
-    //console.log(data.value);
+    console.log(data.value);
     ee.emit("aggregator-message", data.value);
   });
 }

@@ -4,7 +4,10 @@ socket.on('consentrationchart', (data) => {
   gauge4.setValueAnimated(Number(data.H2S), 3);
   gauge5.setValueAnimated(Number(data.CH4), 3);
 });
-socket.on('temperchart', (data) => {   
+socket.on('temperaturechart', (data) => {   
+  if(data.Water != undefined) {
+    console.log(data);
+  }
   gauge1.setValueAnimated(Number(data.Water), 3);
   gauge2.setValueAnimated(Number(data.Oil), 3);
 });

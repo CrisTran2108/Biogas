@@ -19,10 +19,3 @@ Trong Template giao diện này có sử dụng những thư viện phía client
 Các bạn vui lòng làm theo hướng dẫn trong video của mình, sử dụng chính xác phiên bản của các thư viện này để tránh gặp những lỗi không đáng có nhé.
 Thank you so much!
 
-Author: Trung Quân
-
-Blog: https://trungquandev.com/
-
-CV: https://cv.trungquandev.com/
-
-"A little bit of fragrance always clings to the hands that gives you roses!"

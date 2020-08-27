@@ -9,7 +9,7 @@ let getdata = (io,ee) => {
   function kafkadata(id,idmay){
     return function(data){   
       data = JSON.parse(data);
-      //console.log(data)
+      // console.log(data)
       if (idmay==data.rpi) {
         let dateFormat = require('dateformat');
         let datechart = new Date(Number(data.time))
@@ -41,36 +41,40 @@ let getdata = (io,ee) => {
           }
         });
         let uchartdata = {
-          "date": dateFormat(datechart, "HH:MM:ss"),
+          "date": dateFormat(datechart, "yyyy-mm-dd HH:MM:ss"),
           "V_ab":vab,
         };
         let ichartdata = {
-          "date": dateFormat(datechart, "HH:MM:ss"),
+          "date": dateFormat(datechart, "yyyy-mm-dd HH:MM:ss"),
           "I_ab":ia,
           "I_bc":ib,
           "I_ca":ic,
         };
         let temperaturedata = {
-          "date": dateFormat(datechart, "HH:MM:ss"),
+          "date": dateFormat(datechart, "yyyy-mm-dd HH:MM:ss"),
           "Water":tw,
           "Oil":"",
         };
+        let pressuredata = {
+          "date": dateFormat(datechart, "yyyy-mm-dd HH:MM:ss"),
+          "Oil": po,
+        } 
         let timedata = {
           "timestart": tb,
           "timestop": te
         };
         let consentrationdata = {
-          "date": dateFormat(datechart, "HH:MM:ss"),
+          "date": dateFormat(datechart, "yyyy-mm-dd HH:MM:ss"),
           "O2":o2,
           "H2S":h2s,
           "CH4":0,
         };
         let speeddata = {
-          "date": dateFormat(datechart, "HH:MM:ss"),
+          "date": dateFormat(datechart, "yyyy-mm-dd HH:MM:ss"),
           "S":s,
         };
         let frequencydata = {
-          "date": dateFormat(datechart, "HH:MM:ss"),
+          "date": dateFormat(datechart, "yyyy-mm-dd HH:MM:ss"),
           "F":f,
         };
         if(data.type=='electrical'){
@@ -87,11 +91,12 @@ let getdata = (io,ee) => {
             Frequency: f,
             Time: data.time,
           }
-          //electricalModel.createNew(item);
-          //electricalModel.querydata();
+          electricalModel.createNew(item);
+          // console.log(ichartdata);
         }else if(data.type=='environmental'){
           io.to(id).emit('consentrationchart', consentrationdata);
-          io.to(id).emit('temperchart', temperaturedata);
+          io.to(id).emit('temperaturechart', temperaturedata);
+          io.to(id).emit('pressurechart', pressuredata);
           let item = {
             T_water: tw,
             P_oil: po,
@@ -99,14 +104,9 @@ let getdata = (io,ee) => {
             H2S: h2s,
             Time: data.time,
           }
-          //environmentalModel.createNew(item);
-          //environmentalModel.querydata();
-        }else{
-
+          environmentalModel.createNew(item);
         }
-      } else {
-        //
-      }
+      } 
       //io.to(id).emit('abc',data);
     }
   }
@@ -117,6 +117,16 @@ let getdata = (io,ee) => {
     
     let currentUserId = socket.request.user._doc.idmachine;
     let fuctionlistenler = kafkadata(socket.id,currentUserId)
+
+    // listen event from client
+    socket.on("ichartmes",()=>{
+      electricalModel.querydata(io);
+    });
+    socket.on("ichartmes",()=>{
+      electricalModel.querydata(io);
+    });
+
+    //push socket id to array
     if (clients[currentUserId]) {
       clients[currentUserId].push(socket.id);
     } else {
