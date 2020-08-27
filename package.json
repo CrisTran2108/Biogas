@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CrisTran2108/Biogas.git"
+    "url": "git+https://github.com/hieuduy6098/biogas.git"
   },
   "author": "hieu",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/CrisTran2108/Biogas/issues"
+    "url": "https://github.com/hieuduy6098/biogas/issues"
   },
-  "homepage": "https://github.com/CrisTran2108/Biogas#readme",
+  "homepage": "https://github.com/hieuduy6098/biogas#readme",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "bluebird": "^3.5.3",
