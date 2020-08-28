@@ -1,21 +1,14 @@
-# biogas
-biogas
-# Awesome-Chat-Template-Frontend
 
-Trong Template giao diện này có sử dụng những thư viện phía client với chính xác các phiên bản như sau:
+## **Back-end**
+*kafka: Nhận dữ liệu gửi từ Kafka
+*controllers:lấy dữ liệu được yêu cầu từ các models, 
+tạo trang HTML hiển thị dữ liệu và trả về cho người dùng.
+*routes: Điều hướng các yêu cầu từ người dùng tới các hàm controller tương ứng
+*models:format data(electrical, enviroment, operator)
+*sockets/getdata:emit các gói tin tới các biểu đồ tương ứng 
 
-- bootstrap: **^3.3.7**
-- font-awesome **^4.7.0**
-- jquery **^3.3.1**
-- AlertifyJS **^1.11.0**
-- jquery.nicescroll **^3.7.6**
-- moment **^2.21.0**
-- emojionearea **^3.0.0**
-- peerjs **^0.3.14**
-- sweetalert2 **^7.33.1**
-- photoset-grid **^1.0.1**
-- jquery-colorbox **^1.6.4**
-
-Các bạn vui lòng làm theo hướng dẫn trong video của mình, sử dụng chính xác phiên bản của các thư viện này để tránh gặp những lỗi không đáng có nhé.
-Thank you so much!
+## **Front-end**
+*public/js/user/: lắng nghe các gói tin được emit từ getdata và vẽ lên biểu đồ (armchart, gauge)
+*public/js/admin: generate data để hiển thị lên các biểu đồ trong trang admin (chart.js)
+*views: render data (admin2.ejs và main2.ejs là trang html mới).
 
